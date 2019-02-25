@@ -1,0 +1,19 @@
+language: go
+
+go:
+  - 1.11
+
+script:
+  - make linux
+  - make darwin
+
+deploy:
+  provider: releases
+  api_key: $GH_TOKEN
+  file:
+    - p42cli.linux.amd64.tar.gz
+    - p42cli.darwin.amd64.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
+    branch: master
